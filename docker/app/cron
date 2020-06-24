@@ -1,0 +1,17 @@
+MAILTO=""
+TZ=UTC
+
+# every 15
+*/5 * * * * /usr/local/bin/php /var/www/public/cron/cron_feed.php # Fetch kills from other killboards (replaces cron_fetcher and cron_idfeed)
+*/5 * * * * /usr/local/bin/php /var/www/public/cron/cron_zkb.php # Fetch kills from zKillboard APIs
+*/5 * * * * /usr/local/bin/php /var/www/public/cron/cron_esi.php # Fetch kills from ESI
+
+# Daily
+# Remove old files from the cache.
+0 1 * * * /usr/local/bin/php /var/www/public/cron/cron_clearup.php
+#Updated the values of items.
+5 1 * * * /usr/local/bin/php /var/www/public/cron/cron_value.php
+
+# cache
+15 */2  * * * /usr/local/bin/php /var/www/public/cron/cron_cache.php
+
